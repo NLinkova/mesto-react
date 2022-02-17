@@ -1,30 +1,30 @@
-          />
-          <span id="about-error" className="error"></span>
+# Проект: Место 10
 
-          <button type="submit" className="popup__submit-button">
-            Сохранить
-          </button> */}
-          для ошибок валидации нужно поменять id span
+### Обзор
 
-{/_ <!-- попап для удаления карточки --> _/}
+- Описание проекта
+- Figma
+- Функциональность
+- Инструция по использованию
+- Ссылка на сайт
 
-      <div className="popup popup_type_delete-card">
-        <div className="popup__delete-container">
-          <button type="button" className="popup__close-button">
-            <img
-              className="popup__cross"
-              src={closeButton}
-              alt="иконка крестика"
-            />
-          </button>
-          <form className="popup__form" name="confirm-form" noValidate>
-            <h3 className="popup__title popup__title_small">Вы уверены?</h3>
-            <button
-              type="button"
-              className="popup__submit-button popup__submit-button_small"
-            >
-              Да
-            </button>
-          </form>
-        </div>
-      </div>
+### Описание проекта
+
+Этот сайт является проектной работой студента курса "Веб-девелопмент" ЯндексПрактикума. В ходе создания сайта отрабатываются знание по веб-разработке, полученные по время 10 спринта в тренажере. Макет сайта находится на сайте Figma.
+
+### Figma
+
+- [Ссылка на макет в Figma](https://www.figma.com/file/bjyvbKKJN2naO0ucURl2Z0/JavaScript.-Sprint-5?node-id=0%3A1)
+
+### Функциональность
+
+Использована библиотека JavaScript React / react-create-app. На сайте реализованы такие функции как: позиционирование блоков, масштабирование, грид и флекс контейнеры, ссылки, применение оверлея, использование форм ввода, всплывающее окно и др. Также используется метод ООП, NPM, Webpack. Реализованы несколько версий веб-сайта для разных разрешений экрана: 1280 и 320 пикселей, а также между этими показателями.
+
+### Инструция по использованию
+
+Проект может быть использован как пример вёрстки и реальзации структуры HTML, свойст CSS и функций JS в образовательных целях.
+Сайт открывается во всех браузерах. Версия html, lang="ru", charset="UTF-8".
+
+### Ссылка на сайт
+
+https://nlinkova.github.io/mesto-react/

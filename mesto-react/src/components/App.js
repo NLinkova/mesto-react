@@ -11,7 +11,7 @@ function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
     React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
-  const [selectedCard, setSelectedCard] = React.useState();
+  const [selectedCard, setSelectedCard] = React.useState(false);
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -25,8 +25,11 @@ function App() {
     setIsAddPlacePopupOpen(true);
   }
 
-  function handleCardClick(cardId) {
-    setSelectedCard(cardId);
+  function handleCardClick(card) {
+    setSelectedCard({
+      name: card.name,
+      link: card.link,
+    });
   }
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false);
@@ -47,7 +50,7 @@ function App() {
       <Footer />
       {/* <!-- попап редактирования имени профиля --> */}
       <PopupWithForm
-        isOpen={isEditProfilePopupOpen ? "popup_is-opened" : ""}
+        isOpen={isEditProfilePopupOpen ? "popup_opened" : ""}
         onClose={closeAllPopups}
         name="edit-profile"
         title="Редактировать профиль"
@@ -83,7 +86,7 @@ function App() {
 
       {/* <!-- попап для добавления новой карточки --> */}
       <PopupWithForm
-        isOpen={isAddPlacePopupOpen ? "popup_is-opened" : ""}
+        isOpen={isAddPlacePopupOpen ? "popup_opened" : ""}
         onClose={closeAllPopups}
         name="add-card"
         title="Новое место"
@@ -116,7 +119,7 @@ function App() {
       </PopupWithForm>
       {/* <!-- попап для обновления аватара --> */}
       <PopupWithForm
-        isOpen={isEditAvatarPopupOpen ? "popup_is-opened" : ""}
+        isOpen={isEditAvatarPopupOpen ? "popup_opened" : ""}
         onClose={closeAllPopups}
         name="edit-avatar"
         title="Обновить аватар"
@@ -137,7 +140,8 @@ function App() {
         </div>
       </PopupWithForm>
       <ImagePopup
-        isOpen={selectedCard ? "popup_is-opened" : ""}
+        name="image"
+        isOpen={selectedCard ? "popup_opened" : ""}
         card={selectedCard}
         onClose={closeAllPopups}
       />
