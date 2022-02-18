@@ -1,6 +1,6 @@
 {
   "short_name": "React Mesto",
-  "name": "React Messto Project",
+  "name": "React Mesto Project",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
