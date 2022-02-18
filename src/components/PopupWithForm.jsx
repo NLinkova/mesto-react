@@ -3,7 +3,8 @@ import closeButton from "../images/close_icon.svg";
 
 function PopupWithForm(props) {
   return (
-    <div className={`popup popup_type_${props.name} ${props.isOpen}`}>
+    // задается метод открытия
+    <div className={`popup popup_type_${props.name} ${props.isOpen ? `popup_opened` : ''}`}> 
       <div className="popup__container">
         <button
           type="button"

@@ -11,7 +11,8 @@ function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
     React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
-  const [selectedCard, setSelectedCard] = React.useState(false);
+  const [isImagePopupOpen, setIsImagePopupOpen] = React.useState(false);
+  const [selectedCard, setSelectedCard] = React.useState({});
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -30,12 +31,14 @@ function App() {
       name: card.name,
       link: card.link,
     });
+    setIsImagePopupOpen(true);
   }
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
-    setSelectedCard("");
+    setIsImagePopupOpen(false);
+    setSelectedCard({});
   }
 
   return (
@@ -50,7 +53,7 @@ function App() {
       <Footer />
       {/* <!-- попап редактирования имени профиля --> */}
       <PopupWithForm
-        isOpen={isEditProfilePopupOpen ? "popup_opened" : ""}
+        isOpen={isEditProfilePopupOpen}
         onClose={closeAllPopups}
         name="edit-profile"
         title="Редактировать профиль"
@@ -86,7 +89,7 @@ function App() {
 
       {/* <!-- попап для добавления новой карточки --> */}
       <PopupWithForm
-        isOpen={isAddPlacePopupOpen ? "popup_opened" : ""}
+        isOpen={isAddPlacePopupOpen}
         onClose={closeAllPopups}
         name="add-card"
         title="Новое место"
@@ -119,7 +122,7 @@ function App() {
       </PopupWithForm>
       {/* <!-- попап для обновления аватара --> */}
       <PopupWithForm
-        isOpen={isEditAvatarPopupOpen ? "popup_opened" : ""}
+        isOpen={isEditAvatarPopupOpen}
         onClose={closeAllPopups}
         name="edit-avatar"
         title="Обновить аватар"
@@ -141,7 +144,7 @@ function App() {
       </PopupWithForm>
       <ImagePopup
         name="image"
-        isOpen={selectedCard ? "popup_opened" : ""}
+        isOpen={isImagePopupOpen}
         card={selectedCard}
         onClose={closeAllPopups}
       />
