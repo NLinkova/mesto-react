@@ -6,9 +6,9 @@ import pencilButton from "../images/pencil.svg";
 import plusButton from "../images/plus.svg";
 
 function Main(props) {
-  const [userName, setUserName] = React.useState([]);
-  const [userDescription, setUserDescription] = React.useState([]);
-  const [userAvatar, setUserAvatar] = React.useState([]);
+  const [userName, setUserName] = React.useState('');
+  const [userDescription, setUserDescription] = React.useState('');
+  const [userAvatar, setUserAvatar] = React.useState('');
   const [cards, setCards] = React.useState([]);
 
   React.useEffect(() => {
@@ -67,8 +67,8 @@ function Main(props) {
       </section>
       <section className="elements">
         {/*контейнер для карточек */}
-        {cards.map((item, index) => (
-          <Card card={item} key={index} onCardClick={props.onCardClick} />
+        {cards.map(({_id, ...card}) => (
+          <Card card={card} key={_id} onCardClick={props.onCardClick} />
         ))}
       </section>
     </main>
