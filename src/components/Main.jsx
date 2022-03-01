@@ -5,22 +5,11 @@ import pencilAvatar from "../images/pencil_avatar.svg";
 import pencilButton from "../images/pencil.svg";
 import plusButton from "../images/plus.svg";
 
-function Main(props) {
-  const [userName, setUserName] = React.useState('');
-  const [userDescription, setUserDescription] = React.useState('');
-  const [userAvatar, setUserAvatar] = React.useState('');
-  const [cards, setCards] = React.useState([]);
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-  React.useEffect(() => {
-    Promise.all([api.getUserInfoFromServer(), api.getCards()])
-      .then(([user, cards]) => {
-        setUserName(user.name);
-        setUserDescription(user.about);
-        setUserAvatar(user.avatar);
-        setCards(cards);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+function Main(props) {
+  const currentUser = React.useContext(CurrentUserContext);
+
   return (
     <main className="content">
       <section className="profile">
@@ -28,7 +17,7 @@ function Main(props) {
           <img
             className="profile__avatar"
             alt="аватар пользователя страницы"
-            src={userAvatar}
+            src={currentUser.avatar}
           />{" "}
           <button
             type="button"
@@ -43,7 +32,7 @@ function Main(props) {
           </button>
         </div>
         <div className="profile__info">
-          <h1 className="profile__name">{userName}</h1>{" "}
+          <h1 className="profile__name">{currentUser.name}</h1>{" "}
           <button
             type="button"
             className="profile__edit-button"
@@ -55,7 +44,7 @@ function Main(props) {
               alt="иконка карандаша"
             />
           </button>
-          <p className="profile__description">{userDescription}</p>{" "}
+          <p className="profile__description">{currentUser.about}</p>{" "}
         </div>
         <button
           type="button"
@@ -67,7 +56,7 @@ function Main(props) {
       </section>
       <section className="elements">
         {/*контейнер для карточек */}
-        {cards.map(({_id, ...card}) => (
+        {props.cards.map(({ _id, ...card }) => (
           <Card card={card} key={_id} onCardClick={props.onCardClick} />
         ))}
       </section>
