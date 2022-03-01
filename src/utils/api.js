@@ -27,12 +27,12 @@ class Api {
 
   changeLikeCardStatus(id, isLiked) {
     if (isLiked) {
-      return fetch(`${this._url}/cards/like/${id}`, {
+      return fetch(`${this._url}/cards/${id}/likes`, {
         method: "PUT",
         headers: this._headers,
       }).then(this._checkResponse);
     } else {
-      return fetch(`${this._Url}/cards/like/${id}`, {
+      return fetch(`${this._url}/cards/${id}/likes`, {
         method: "DELETE",
         headers: this._headers,
       }).then(this._checkResponse);
