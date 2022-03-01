@@ -4,11 +4,22 @@ import Card from "./Card.jsx";
 import pencilAvatar from "../images/pencil_avatar.svg";
 import pencilButton from "../images/pencil.svg";
 import plusButton from "../images/plus.svg";
-
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function Main(props) {
   const currentUser = React.useContext(CurrentUserContext);
+  // const [userName, setUserName] = React.useState("");
+  // const [userDescription, setUserDescription] = React.useState("");
+  // const [userAvatar, setUserAvatar] = React.useState("");
+  const [cards, setCards] = React.useState([]);
+
+  React.useEffect(() => {
+    Promise.all([api.getCards()])
+      .then(([cards]) => {
+        setCards(cards);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <main className="content">
@@ -56,7 +67,7 @@ function Main(props) {
       </section>
       <section className="elements">
         {/*контейнер для карточек */}
-        {props.cards.map(({ _id, ...card }) => (
+        {cards.map(({ _id, ...card }) => (
           <Card card={card} key={_id} onCardClick={props.onCardClick} />
         ))}
       </section>
