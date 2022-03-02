@@ -1,0 +1,55 @@
+import React from "react";
+import PopupWithForm from "./PopupWithForm";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
+
+function EditAvatarPopup(props) {
+  const newAvatarRef = React.useRef();
+
+  React.useEffect(() => {
+    if (!props.isOpen) {
+      newAvatarRef.current.value = "";
+    }
+  }, [props.isOpen]);
+
+  //   function handleAvatarChange(e) {
+  //     setAvatar(e.target.value);
+  //   }
+
+  function handleSubmit(e) {
+    // Запрещаем браузеру переходить по адресу формы
+    e.preventDefault();
+
+    // Передаём значения управляемых компонентов во внешний обработчик
+    props.onUpdateAvatar({
+      avatar: newAvatarRef.current.value,
+    });
+  }
+
+  return (
+    <PopupWithForm
+      isOpen={props.isOpen}
+      onClose={props.onClose}
+      onSubmit={handleSubmit}
+      name="edit-avatar"
+      title="Обновить аватар"
+    >
+      <div>
+        <input
+          type="url"
+          name="avatar"
+          id="avatar"
+          className="popup__field popup__field_type_url"
+          placeholder="Ссылка на картинку"
+          ref={newAvatarRef}
+          required
+        />
+        <span id="avatar-error" className="error"></span>
+        <button type="submit" className="popup__submit-button">
+          Сохранить
+        </button>
+      </div>
+    </PopupWithForm>
+  );
+}
+
+export default EditAvatarPopup;
