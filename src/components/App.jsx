@@ -3,6 +3,7 @@ import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
+import EditProfilePopup from "./EditProfilePopup";
 import ImagePopup from "./ImagePopup";
 import api from "../utils/api.js";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
@@ -52,6 +53,15 @@ function App() {
     setSelectedCard({});
   }
 
+  function handleUpdateUser(user) {
+    console.log(user);
+    api
+      .setUserInfoToServer(user)
+      .then((user) => setCurrentUser(user))
+      .catch((err) => console.log(err))
+      .finally(() => closeAllPopups());
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page__content">
@@ -63,42 +73,11 @@ function App() {
           onCardClick={handleCardClick}
         />
         <Footer />
-        {/* <!-- попап редактирования имени профиля --> */}
-        <PopupWithForm
+        <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
-          name="edit-profile"
-          title="Редактировать профиль"
-        >
-          <div>
-            <input
-              type="text"
-              name="name"
-              id="user-name"
-              className="popup__field popup__field_type_name"
-              placeholder="Имя"
-              minLength="2"
-              maxLength="40"
-              required
-            />
-            <span id="user-name-error" className="error"></span>
-            <input
-              type="text"
-              name="about"
-              id="about"
-              className="popup__field popup__field_type_desc"
-              placeholder="Описание"
-              minLength="2"
-              maxLength="200"
-              required
-            />
-            <span id="about-error" className="error"></span>
-            <button type="submit" className="popup__submit-button">
-              Сохранить
-            </button>
-          </div>
-        </PopupWithForm>
-
+          onUpdateUser={handleUpdateUser}
+        />
         {/* <!-- попап для добавления новой карточки --> */}
         <PopupWithForm
           isOpen={isAddPlacePopupOpen}
