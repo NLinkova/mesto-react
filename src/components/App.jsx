@@ -76,6 +76,7 @@ function App() {
     api
       .deleteCard(card._id)
       .then(() => {
+        //копия массив без удаленной карточки
         const newCards = cards.filter((item) => {
           return item._id !== card._id;
         });
@@ -107,7 +108,7 @@ function App() {
     api
       .postCard(card)
       .then((newCard) => {
-        setCards([newCard, ...cards]);
+        setCards([newCard, ...cards]); //обновление стейта cards ...
       })
       .catch((err) => console.log(err))
       .finally(() => {

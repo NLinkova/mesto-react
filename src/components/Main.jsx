@@ -6,6 +6,7 @@ import plusButton from "../images/plus.svg";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function Main(props) {
+  //подписка на контекст
   const currentUser = React.useContext(CurrentUserContext);
 
   return (

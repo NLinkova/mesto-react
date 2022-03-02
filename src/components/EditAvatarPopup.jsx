@@ -1,8 +1,8 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
-import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function EditAvatarPopup(props) {
+  //использование рефа
   const newAvatarRef = React.useRef();
 
   React.useEffect(() => {
@@ -10,10 +10,6 @@ function EditAvatarPopup(props) {
       newAvatarRef.current.value = "";
     }
   }, [props.isOpen]);
-
-  //   function handleAvatarChange(e) {
-  //     setAvatar(e.target.value);
-  //   }
 
   function handleSubmit(e) {
     // Запрещаем браузеру переходить по адресу формы
@@ -29,7 +25,7 @@ function EditAvatarPopup(props) {
     <PopupWithForm
       isOpen={props.isOpen}
       onClose={props.onClose}
-      onSubmit={handleSubmit}
+      onSubmit={(e) => handleSubmit(e)}
       name="edit-avatar"
       title="Обновить аватар"
     >
