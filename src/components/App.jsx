@@ -77,8 +77,7 @@ function App() {
       .deleteCard(card._id)
       .then(() => {
         //копия массив без удаленной карточки
-        const newCards = cards.filter((c) => c._id !== card._id);
-        setCards(newCards);
+        setCards((cards) => cards.filter((c) => c._id !== card._id));
       })
       .catch((err) => console.log(err));
   }
