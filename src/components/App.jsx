@@ -17,7 +17,7 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isImagePopupOpen, setIsImagePopupOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState({});
-  const [currentUser, setCurrentUser] = React.useState("");
+  const [currentUser, setCurrentUser] = React.useState({});
   const [cards, setCards] = React.useState([]);
 
   React.useEffect(() => {
@@ -77,16 +77,13 @@ function App() {
       .deleteCard(card._id)
       .then(() => {
         //копия массив без удаленной карточки
-        const newCards = cards.filter((item) => {
-          return item._id !== card._id;
-        });
+        const newCards = cards.filter((c) => c._id !== card._id);
         setCards(newCards);
       })
       .catch((err) => console.log(err));
   }
 
   function handleUpdateUser(user) {
-    console.log(user);
     api
       .setUserInfoToServer(user)
       .then((user) => setCurrentUser(user))
